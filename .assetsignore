@@ -1,0 +1,12 @@
+# Keep non-site files from being served by Cloudflare Workers Static Assets
+wrangler.jsonc
+.assetsignore
+.git
+.gitignore
+.github
+.claude
+.vscode
+node_modules
+.DS_Store
+*.code-workspace
+*.md
