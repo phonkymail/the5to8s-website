@@ -1,0 +1,685 @@
+/* ---------- Design tokens (from Figma) ---------- */
+:root {
+  /* Colors */
+  --color-background-1: #fbead6;
+  --color-background-2: #7aa4ad;
+  --color-accent-1: #2c2c2c;
+  --color-accent-on-1: #fbead6;
+  --color-text-link: #fbead6;
+  --color-text-body-1: #2c2c2c;
+  --color-text-headline-1: #2c2c2c;
+  --color-text-captions: #717171;
+  --color-divider-1: #2c2c2c;
+
+  /* Font families */
+  --font-condensed: "Roboto Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Roboto", system-ui, sans-serif;
+  --font-display: "Ultra", Georgia, serif;
+
+  /* Text styles: Link */
+  --link-font: 900 45px/1.2 var(--font-condensed);
+  --link-tracking: -0.01em;
+
+  /* Text styles: Heading 1 */
+  --heading-1-font: 900 40px/1.2 var(--font-condensed);
+  --heading-1-tracking: -0.01em;
+
+  /* Text styles: Heading 2 */
+  --heading-2-font: 700 30px/1.3 var(--font-condensed);
+  --heading-2-tracking: -0.01em;
+
+  /* Text styles: Caption */
+  --caption-font: 700 12px/1.5 var(--font-condensed);
+
+  /* Text styles: Wordmark */
+  --wordmark-font: 400 clamp(64px, 17vw, 240px)/1 var(--font-display);
+  --wordmark-tracking: 0.02em;
+
+  /* Text styles: Body / Body 2 */
+  --body-font: 400 20px/1.5 var(--font-body);
+  --body-2-font: 600 20px/1.5 var(--font-body);
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-background-1);
+  color: var(--color-text-body-1);
+  font: var(--body-font);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1, h2, h3, p, figure {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Text styles ---------- */
+.heading-1 {
+  font: var(--heading-1-font);
+  letter-spacing: var(--heading-1-tracking);
+  color: var(--color-text-headline-1);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.heading-2 {
+  font: var(--heading-2-font);
+  letter-spacing: var(--heading-2-tracking);
+  color: var(--color-text-body-1);
+}
+
+.caption {
+  font: var(--caption-font);
+  color: var(--color-text-captions);
+  text-transform: uppercase;
+}
+
+.body {
+  font: var(--body-font);
+}
+
+.body-2 {
+  font: var(--body-2-font);
+}
+
+.wordmark {
+  font: var(--wordmark-font);
+  letter-spacing: var(--wordmark-tracking);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.star {
+  width: 30px;
+  height: 30px;
+  padding: 0 0.735px 2.865px; /* Figma inset 0 2.45% 9.55% */
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 138px;
+  padding: 30px 30px 0;
+}
+
+.nav__link {
+  background: var(--color-accent-1);
+  color: var(--color-text-link);
+  font: var(--link-font);
+  letter-spacing: var(--link-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 6px 15px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 640px;
+}
+
+.hero__image {
+  width: 640px;
+  height: 640px;
+  object-fit: cover;
+}
+
+.hero__badge {
+  position: absolute;
+  width: 197.5px;
+  height: 197.5px;
+  bottom: -24.5px;
+  /* Badge sits 188.5px from the right edge of the 1280px frame */
+  left: calc(50% + 640px - 188.5px - 197.5px);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 50px;
+}
+
+.title__wordmark {
+  color: var(--color-text-headline-1);
+}
+
+.wordmark__the {
+  font-size: 0.55em;
+  vertical-align: 0.35em;
+  margin-right: -0.2em; /* pull in the full-size space before "5to8s" */
+}
+
+/* ---------- Main ---------- */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 46px 40px 126px;
+  text-align: center;
+}
+
+.verdict {
+  max-width: 860px;
+  margin-top: -12px;
+  font: 700 22px/1.4 var(--font-condensed);
+  letter-spacing: -0.01em;
+  color: var(--color-text-body-1);
+  text-wrap: balance;
+}
+
+.verdict__label {
+  text-transform: uppercase;
+}
+
+.verdict__stars {
+  letter-spacing: 0.1em;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
+  padding: 0 40px 150px;
+}
+
+.feature__image {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.feature__text {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.feature__text .heading-1 {
+  text-align: left;
+}
+
+.feature--reverse {
+  flex-direction: row-reverse;
+}
+
+.tape-deck {
+  display: block;
+  width: 100%;
+  aspect-ratio: 12 / 5;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(44, 44, 44, 0.25);
+}
+
+.feature__audio {
+  width: 100%;
+  accent-color: var(--color-accent-1);
+}
+
+.feature__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 40px 150px;
+}
+
+/* Gallery: cookbooks in one row that fits the page width */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.gallery__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.gallery__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.gallery__image--flipped {
+  transform: scaleX(-1);
+}
+
+/* Dates */
+.agenda {
+  scroll-margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  padding: 88px 40px;
+}
+
+.agenda__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 920px;
+}
+
+.agenda__title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.agenda__item {
+  display: flex;
+  gap: 128px;
+  width: 100%;
+  padding-top: 20px;
+  border-top: 0.5px solid var(--color-divider-1);
+  color: var(--color-text-body-1);
+}
+
+.agenda__time {
+  font: 700 20px/1.5 var(--font-body);
+  white-space: nowrap;
+}
+
+.agenda__time {
+  min-width: 160px;
+}
+
+.agenda__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Section heading with star (e.g. Music) */
+.section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 40px 60px;
+}
+
+/* Live show row */
+.show {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 28px 0;
+  border-top: 0.5px solid var(--color-divider-1);
+  border-bottom: 0.5px solid var(--color-divider-1);
+}
+
+.show__info {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 56px;
+}
+
+.show__field dt {
+  margin-bottom: 4px;
+}
+
+.show__field dd {
+  margin: 0;
+  font: var(--body-2-font);
+  color: var(--color-text-body-1);
+}
+
+.venue-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.venue-link:hover,
+.venue-link:focus-visible {
+  color: var(--color-background-2);
+}
+
+.ticket-link {
+  background: var(--color-accent-1);
+  color: var(--color-text-link);
+  font: var(--heading-2-font);
+  letter-spacing: var(--heading-2-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 4px 12px;
+}
+
+.ticket-link:hover,
+.ticket-link:focus-visible,
+.nav__link:hover,
+.nav__link:focus-visible {
+  background: var(--color-background-2);
+  color: var(--color-accent-1);
+}
+
+/* About */
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding: 0 40px 78px;
+}
+
+.about__image {
+  width: 100%;
+  aspect-ratio: 1200 / 600;
+  object-fit: cover;
+  object-position: center 60%;
+  border-radius: 10px;
+}
+
+.about__text {
+  text-align: center;
+}
+
+.about__text p + p {
+  margin-top: 1.5em;
+}
+
+/* Band members */
+.members {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 20px;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.member__name {
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.member__nick {
+  font: italic 400 15px/1.3 var(--font-body);
+  color: var(--color-text-body-1);
+  margin-top: -4px;
+}
+
+.member__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 600px;
+  padding: 40px;
+  background: var(--color-background-2);
+}
+
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.footer__links {
+  display: flex;
+  gap: 30px;
+  color: var(--color-accent-1);
+}
+
+.footer__col {
+  width: 293px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__links strong {
+  color: var(--color-accent-1);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 11.977px;
+}
+
+.footer__wordmark {
+  color: var(--color-accent-on-1);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 767px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: auto;
+  }
+
+  .hero {
+    height: auto;
+    padding: 0;
+  }
+
+  .hero__image {
+    width: 100%;
+    max-width: 375px;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .hero__badge {
+    width: 84.25px;
+    height: 84.25px;
+    bottom: -28.25px;
+    left: auto;
+    right: max(36.75px, calc(50% - 187.5px + 36.75px));
+  }
+
+  .title {
+    padding: 40px 44px;
+  }
+
+
+  .details > .heading-1 {
+    overflow-wrap: break-word;
+    width: 100%;
+  }
+
+  .about__image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .members {
+    max-width: 280px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+  }
+
+  .member__name {
+    font-size: 15px;
+  }
+
+  .member__nick {
+    font-size: 13px;
+  }
+
+  .show {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .show__info {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .show__field {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .show__field dt {
+    margin-bottom: 0;
+  }
+
+  .show__field dd {
+    font-size: 17px;
+    text-align: right;
+  }
+
+  .show__tickets {
+    text-align: center;
+  }
+
+  .feature,
+  .feature--reverse {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .feature__text,
+  .feature__text .heading-1 {
+    align-items: center;
+    text-align: center;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 16px;
+  }
+
+  .agenda__item {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .agenda__body {
+    gap: 24px;
+  }
+
+  .footer {
+    min-height: 432px;
+  }
+
+  .footer__top {
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .footer__links {
+    flex-direction: column;
+  }
+
+  .footer__col {
+    width: auto;
+    max-width: 293px;
+  }
+}
