@@ -683,3 +683,25 @@ a {
     max-width: 293px;
   }
 }
+
+/* ---------- 404 page ---------- */
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px;
+  text-align: center;
+}
+
+.not-found__badge {
+  width: min(280px, 70vw);
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.not-found__text {
+  max-width: 520px;
+}
