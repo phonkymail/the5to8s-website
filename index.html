@@ -78,6 +78,26 @@
           </dl>
           <a class="ticket-link show__tickets" href="https://place2book.com/da/sw2/sales/3f22m9nqsd" target="_blank" rel="noopener">Tickets</a>
         </article>
+        <form class="signup" action="/subscribe" method="post" aria-labelledby="signup-title">
+          <div class="signup__text">
+            <h3 class="heading-2" id="signup-title">Get the menu first</h3>
+            <p class="body">New dates and fresh releases, served straight to your inbox. No spam, just funk.</p>
+          </div>
+          <div class="signup__row">
+            <label class="visually-hidden" for="signup-email">Email address</label>
+            <input class="signup__input" id="signup-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+            <button class="ticket-link signup__button" type="submit">Sign up</button>
+          </div>
+          <div class="signup__trap" aria-hidden="true">
+            <label for="signup-website">Leave this empty</label>
+            <input id="signup-website" type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <label class="signup__consent caption">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span>Yes, email me about shows and releases. Unsubscribe anytime by replying “stop”.</span>
+          </label>
+          <p class="signup__status body-2" role="status" hidden></p>
+        </form>
       </div>
     </section>
 

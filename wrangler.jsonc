@@ -1,9 +1,20 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "the5to8s-website",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-12",
   "workers_dev": false,
   "preview_urls": false,
   "observability": { "enabled": true },
-  "assets": { "directory": ".", "not_found_handling": "404-page" }
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/subscribe"]
+  },
+  // Signup notifications. The destination must be a verified address in Email Routing.
+  "vars": { "SIGNUP_MAIL_TO": "phonkymail@gmail.com" },
+  "send_email": [
+    { "name": "SIGNUP_MAIL", "destination_address": "phonkymail@gmail.com" }
+  ]
 }

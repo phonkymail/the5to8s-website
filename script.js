@@ -230,3 +230,35 @@ document.addEventListener('click', (event) => {
     });
   }, true);
 })();
+
+// Mailing list signup: submit in the background and confirm in place
+(() => {
+  const form = document.querySelector('.signup');
+  const status = form && form.querySelector('.signup__status');
+  const button = form && form.querySelector('.signup__button');
+  if (!form || !status || !button) return;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    button.disabled = true;
+    let ok = false;
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      ok = response.ok;
+    } catch {
+      ok = false;
+    }
+    button.disabled = false;
+    status.hidden = false;
+    if (ok) {
+      form.reset();
+      status.textContent = 'Thanks! You’re on the list. See you at the next show.';
+    } else {
+      status.textContent = 'Something went wrong. Please try again, or email booking@the5to8s.ongaku.band.';
+    }
+  });
+})();

@@ -537,6 +537,89 @@ a {
   color: var(--color-accent-1);
 }
 
+/* Mailing list signup */
+.signup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.signup__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.signup__text .heading-2 {
+  text-transform: uppercase;
+}
+
+.signup__row {
+  display: flex;
+  width: 100%;
+  max-width: 560px;
+}
+
+.signup__input {
+  flex: 1;
+  min-width: 0;
+  font: var(--body-font);
+  color: var(--color-text-body-1);
+  background: transparent;
+  border: 2px solid var(--color-accent-1);
+  border-right: 0;
+  border-radius: 0;
+  padding: 6px 14px;
+}
+
+.signup__input::placeholder {
+  color: var(--color-text-captions);
+}
+
+.signup__input:focus-visible {
+  outline: 3px solid var(--color-background-2);
+  outline-offset: 0;
+}
+
+.signup__button {
+  border: 0;
+  cursor: pointer;
+}
+
+.signup__button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.signup__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 560px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.signup__consent input {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-accent-1);
+}
+
+/* Hidden from people, still filled in by spam bots */
+.signup__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* About */
 .about {
   display: flex;
@@ -843,6 +926,16 @@ a {
 
   .show__tickets {
     text-align: center;
+  }
+
+  .signup__row {
+    flex-direction: column;
+  }
+
+  .signup__input {
+    border-right: 2px solid var(--color-accent-1);
+    border-bottom: 0;
+    font-size: 17px;
   }
 
   .feature,
