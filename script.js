@@ -14,6 +14,39 @@ document.addEventListener('click', (event) => {
   target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
 });
 
+// Floating jump menu: appears once the top nav is out of view
+(() => {
+  const jump = document.querySelector('.jump');
+  const toggle = jump && jump.querySelector('.jump__toggle');
+  const menu = jump && jump.querySelector('.jump__menu');
+  const topNav = document.querySelector('.nav');
+  if (!jump || !toggle || !menu || !topNav) return;
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', open);
+    menu.hidden = !open;
+  }
+
+  toggle.addEventListener('click', () => setOpen(menu.hidden));
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+  document.addEventListener('click', (event) => {
+    if (!jump.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+
+  new IntersectionObserver(([entry]) => {
+    jump.classList.toggle('is-visible', !entry.isIntersecting);
+    if (entry.isIntersecting) setOpen(false);
+  }).observe(topNav);
+})();
+
 // Retro cassette-deck spectrum for the single's audio player
 (() => {
   const canvas = document.querySelector('.tape-deck');
