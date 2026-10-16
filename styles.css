@@ -554,6 +554,17 @@ a {
   border-radius: 10px;
 }
 
+.about__heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.about__badge {
+  width: 64px;
+  height: 64px;
+}
+
 .about__text {
   text-align: center;
 }
