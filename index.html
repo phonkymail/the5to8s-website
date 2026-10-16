@@ -16,6 +16,7 @@
 <body>
   <nav class="nav" id="top">
     <a class="nav__link" href="#dates">Live Shows</a>
+    <a class="nav__link" href="#promo">Promo</a>
     <a class="nav__link" href="#contact">Contact us</a>
   </nav>
 
@@ -81,9 +82,46 @@
       </div>
     </section>
 
+    <section class="clips" id="live-cooking" aria-labelledby="live-cooking-title">
+      <div class="section-title">
+        <img class="star" src="assets/star.svg" alt="" role="presentation">
+        <h2 class="heading-1" id="live-cooking-title">Old Cooking Tapes</h2>
+      </div>
+      <p class="body clips__intro">Snippets from live shows, served hot and slightly messy.</p>
+      <ul class="clips__grid">
+        <li class="clip">
+          <div class="screen">
+            <video class="screen__video" src="assets/live-cooking-sessions/web/live-cooking-1.mp4" poster="assets/live-cooking-sessions/web/live-cooking-1.jpg" preload="none" playsinline></video>
+            <button class="screen__button" type="button" aria-label="Play Tape 01: The band in full simmer while Kuku is adding some healthy rap spices">
+              <svg class="screen__icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            </button>
+          </div>
+          <p class="caption">Tape 01 · The band in full simmer while Kuku is adding some healthy rap spices</p>
+        </li>
+        <li class="clip">
+          <div class="screen">
+            <video class="screen__video" src="assets/live-cooking-sessions/web/live-cooking-2.mp4" poster="assets/live-cooking-sessions/web/live-cooking-2.jpg" preload="none" playsinline></video>
+            <button class="screen__button" type="button" aria-label="Play Tape 02: Pressure Cooker gives the pot a proper stir">
+              <svg class="screen__icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            </button>
+          </div>
+          <p class="caption">Tape 02 · Pressure Cooker gives the pot a proper stir</p>
+        </li>
+        <li class="clip">
+          <div class="screen">
+            <video class="screen__video" src="assets/live-cooking-sessions/web/live-cooking-3.mp4" poster="assets/live-cooking-sessions/web/live-cooking-3.jpg" preload="none" playsinline></video>
+            <button class="screen__button" type="button" aria-label="Play Tape 03: The crowd, thoroughly seasoned">
+              <svg class="screen__icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            </button>
+          </div>
+          <p class="caption">Tape 03 · The crowd, thoroughly seasoned</p>
+        </li>
+      </ul>
+    </section>
+
     <div class="section-title" id="music">
       <img class="star" src="assets/star.svg" alt="" role="presentation">
-      <h2 class="heading-1">Music</h2>
+      <h2 class="heading-1">Recorded Music</h2>
     </div>
 
     <section class="feature" aria-labelledby="ep-title">
@@ -174,6 +212,26 @@
         </li>
       </ul>
     </div>
+
+    <section class="promo" id="promo" aria-labelledby="promo-title">
+      <div class="section-title">
+        <img class="star" src="assets/star.svg" alt="" role="presentation">
+        <h2 class="heading-1" id="promo-title">Promo</h2>
+      </div>
+      <div class="feature promo__feature">
+        <video class="promo__video" src="assets/promo/web/promo.mp4" poster="assets/promo/web/promo.jpg" controls preload="none" playsinline width="1280" height="720">
+          Your browser can’t play this video. <a href="assets/promo/web/promo.mp4">Download the promo video</a>.
+        </video>
+        <div class="feature__text">
+          <p class="caption">For press, venues and bookers</p>
+          <h3 class="heading-1">Press kit</h3>
+          <p class="body">Bio, press photos, logos and tech rider, all prepped and ready to plate. Ask and we’ll send the full kit.</p>
+          <div class="feature__links">
+            <a class="ticket-link" href="mailto:booking@the5to8s.ongaku.band?subject=Press%20kit%20request">Request press kit</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer" id="contact">
@@ -206,8 +264,10 @@
     <ul class="jump__menu" id="jump-menu" hidden>
       <li><a href="#top">Top</a></li>
       <li><a href="#dates">Live Shows</a></li>
-      <li><a href="#music">Music</a></li>
+      <li><a href="#live-cooking">Old Cooking Tapes</a></li>
+      <li><a href="#music">Recorded Music</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#promo">Promo</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>

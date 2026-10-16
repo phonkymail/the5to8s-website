@@ -204,3 +204,29 @@ document.addEventListener('click', (event) => {
   document.fonts && document.fonts.ready.then(draw);
   resize();
 })();
+
+// Old Cooking Tapes clips: click the video to play/pause
+(() => {
+  document.querySelectorAll('.screen').forEach((screen) => {
+    const video = screen.querySelector('.screen__video');
+    const button = screen.querySelector('.screen__button');
+    const label = button.getAttribute('aria-label').replace(/^Play /, '');
+
+    function render() {
+      screen.classList.toggle('is-playing', !video.paused);
+      button.setAttribute('aria-label', `${video.paused ? 'Play' : 'Pause'} ${label}`);
+    }
+
+    button.addEventListener('click', () => (video.paused ? video.play() : video.pause()));
+    video.addEventListener('play', render);
+    video.addEventListener('pause', render);
+    video.addEventListener('ended', () => { video.currentTime = 0; });
+  });
+
+  // Only one clip (or the single, or the promo) plays at a time
+  document.addEventListener('play', (event) => {
+    document.querySelectorAll('video, audio').forEach((media) => {
+      if (media !== event.target) media.pause();
+    });
+  }, true);
+})();
