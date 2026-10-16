@@ -386,7 +386,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px 150px;
+  padding: 0 40px 86px;
 }
 
 .clips__intro {
@@ -948,10 +948,6 @@ a {
   .feature__text .heading-1 {
     align-items: center;
     text-align: center;
-  }
-
-  .clips {
-    padding-bottom: 100px;
   }
 
   .clips__grid {
