@@ -16,13 +16,17 @@
 <body>
   <nav class="nav" id="top">
     <a class="nav__link" href="#dates">Live Shows</a>
-    <a class="nav__link" href="#contact">Contact us</a>
+    <a class="nav__link" href="#subscribe">Get updates</a>
   </nav>
 
   <header class="header">
     <div class="hero">
       <img class="hero__image" src="assets/5to8s-badge-patina.png" alt="The 5to8s logo">
-      <img class="hero__badge" src="assets/badge.png" alt="Badge: Next show! October 24, 2026, 21:00 to 23:30">
+      <p class="hero__badge" role="img" aria-label="Next show: October 24, 2026, 21:00 to 23:30">
+        <span class="hero__badge-kicker">Next serving</span>
+        <span class="hero__badge-date">Oct 24</span>
+        <span class="hero__badge-time">2026 · 21–23:30</span>
+      </p>
     </div>
     <div class="title">
       <h1 class="wordmark title__wordmark"><span class="wordmark__the">The</span> 5to8s</h1>
@@ -51,21 +55,21 @@
 
     <div class="intro">
       <h2 class="caption">Kitchen Heat Magazine: The 5to8s serve up a feast.</h2>
-      <p class="heading-2">This is music made with love, generous portions, and no shortcuts. Come hungry, leave full, and don’t be surprised if you’re back for seconds.</p>
+      <p class="heading-2">This is music played with love, generous portions, and no shortcuts. Come hungry, leave full, and don’t be surprised if you’re back for seconds.</p>
       <p class="verdict"><span class="verdict__label">Verdict:</span> <span class="verdict__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><br>A homemade feast of funk, soul and hip hop. Catch them live while you still can get a table.</p>
     </div>
 
     <section class="signup-section" id="subscribe" aria-labelledby="subscribe-title">
       <div class="agenda__title">
         <img class="star" src="assets/star.svg" alt="" role="presentation">
-        <h2 class="heading-1" id="subscribe-title">Subscribe</h2>
+        <h2 class="heading-1" id="subscribe-title">Kitchen News</h2>
       </div>
       <form class="signup" action="/subscribe" method="post" aria-labelledby="subscribe-title">
         <p class="body">Join our mailing list for new show dates, fresh releases and news from the kitchen. No spam, just funk.</p>
         <div class="signup__row">
           <label class="visually-hidden" for="signup-email">Email address</label>
           <input class="signup__input" id="signup-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
-          <button class="ticket-link signup__button" type="submit">Sign up</button>
+          <button class="ticket-link signup__button" type="submit">Count me in</button>
         </div>
         <div class="signup__trap" aria-hidden="true">
           <label for="signup-website">Leave this empty</label>

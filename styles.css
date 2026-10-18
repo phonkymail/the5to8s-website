@@ -1,7 +1,7 @@
 /* ---------- Design tokens (from Figma) ---------- */
 :root {
   /* Colors */
-  --color-background-1: #fbead6;
+  --color-background-1: #f8e5cf;
   --color-background-2: #7aa4ad;
   --color-accent-1: #2c2c2c;
   --color-accent-on-1: #fbead6;
@@ -171,13 +171,50 @@ a {
   object-fit: cover;
 }
 
+/* Plate-style stamp; all inner sizes are in em, so font-size scales the whole badge */
 .hero__badge {
   position: absolute;
-  width: 197.5px;
-  height: 197.5px;
   bottom: -24.5px;
   /* Badge sits 188.5px from the right edge of the 1280px frame */
   left: calc(50% + 640px - 188.5px - 197.5px);
+  font-size: 19.75px;
+  width: 10em;
+  height: 10em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+  border-radius: 50%;
+  background: var(--color-background-1);
+  color: var(--color-accent-1);
+  border: 0.35em solid var(--color-background-2);
+  box-shadow: 0 0 0 0.12em var(--color-accent-1), 0.25em 0.3em 0 var(--color-accent-1);
+  transform: rotate(-9deg);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Inner rim of the plate */
+.hero__badge::before {
+  content: "";
+  position: absolute;
+  inset: 0.45em;
+  border: 0.1em dashed var(--color-accent-1);
+  border-radius: 50%;
+}
+
+.hero__badge-kicker,
+.hero__badge-time {
+  font: 700 0.8em/1 var(--font-condensed);
+  letter-spacing: 0.08em;
+}
+
+.hero__badge-date {
+  font: 400 1.55em/1 var(--font-display);
+  padding-block: 0.15em;
+  border-block: 0.06em solid var(--color-accent-1);
 }
 
 .title {
@@ -862,8 +899,7 @@ a {
   }
 
   .hero__badge {
-    width: 84.25px;
-    height: 84.25px;
+    font-size: 8.425px;
     bottom: -28.25px;
     left: auto;
     right: max(36.75px, calc(50% - 187.5px + 36.75px));
