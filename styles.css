@@ -694,6 +694,26 @@ a {
 }
 
 /* Band members */
+.members__title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 0 -40px;
+}
+
+.members__wordmark {
+  width: min(360px, 60vw);
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.members__title .heading-1 {
+  font-size: clamp(32px, 7vw, 56px);
+  line-height: 1;
+  padding-bottom: 0.15em;
+}
+
 .members {
   list-style: none;
   margin: 0;
