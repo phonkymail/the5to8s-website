@@ -47,6 +47,18 @@ document.addEventListener('click', (event) => {
   }).observe(topNav);
 })();
 
+// Band member profiles appear in a new random order on every page load
+(() => {
+  const list = document.querySelector('.members');
+  if (!list) return;
+  const members = [...list.children];
+  for (let i = members.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [members[i], members[j]] = [members[j], members[i]];
+  }
+  list.append(...members);
+})();
+
 // Retro cassette-deck spectrum for the single's audio player
 (() => {
   const canvas = document.querySelector('.tape-deck');
