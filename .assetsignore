@@ -12,3 +12,5 @@ node_modules
 *.md
 worker
 .wrangler
+*.MOV
+*.mov
