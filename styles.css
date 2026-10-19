@@ -898,6 +898,35 @@ a {
   }
 }
 
+/* ---------- Tablet portrait ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Desktop offset assumes a 1280px frame; pin to the viewport edge instead */
+  .hero__badge {
+    left: auto;
+    right: 24px;
+  }
+
+  .feature,
+  .feature--reverse {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .feature__text,
+  .feature__text .heading-1 {
+    align-items: center;
+    text-align: center;
+  }
+
+  .feature__links {
+    justify-content: center;
+  }
+
+  .clips__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 767px) {
   .jump {
