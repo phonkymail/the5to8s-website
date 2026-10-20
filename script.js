@@ -74,6 +74,7 @@ document.addEventListener('click', (event) => {
   const levels = new Array(BANDS).fill(0);
   const peaks = new Array(BANDS).fill(0);
   let analyser, freq, audioCtx, angle = 0, last = performance.now(), running = false;
+  let label = 'FALLING DEEPER';
 
   function setupAudio() {
     if (audioCtx) return;
@@ -152,7 +153,7 @@ document.addEventListener('click', (event) => {
     ctx.fillStyle = COLORS.cream;
     ctx.font = `700 ${Math.max(9, h * 0.075)}px "Roboto Condensed", sans-serif`;
     ctx.textBaseline = 'middle';
-    ctx.textAlign = 'left'; ctx.fillText('THE 5TO8S · INTO THE BLACKHOLE', w * 0.04, h * 0.09);
+    ctx.textAlign = 'left'; ctx.fillText(`THE 5TO8S · ${label}`, w * 0.04, h * 0.09);
     ctx.textAlign = 'right'; ctx.fillText('STEREO · TYPE I', w * 0.96, h * 0.09);
 
     // reels: tape moves from left to right as the song plays
@@ -210,6 +211,30 @@ document.addEventListener('click', (event) => {
   audio.addEventListener('pause', start);
   audio.addEventListener('seeked', draw);
   audio.addEventListener('loadedmetadata', draw);
+
+  // Song switcher: each button carries the track's audio, cover and text
+  const feature = audio.closest('.feature');
+  const buttons = feature.querySelectorAll('.tape-rack__tape');
+  buttons.forEach((button) => button.addEventListener('click', () => {
+    if (button.getAttribute('aria-pressed') === 'true') return;
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+
+    const t = button.dataset;
+    const cover = feature.querySelector('.feature__image');
+    cover.src = t.cover; cover.alt = t.coverAlt;
+    cover.width = t.coverWidth; cover.height = t.coverHeight;
+    feature.querySelector('#single-title').textContent = t.title;
+    feature.querySelector('.feature__text > .body').textContent = t.body;
+    label = t.label;
+
+    const wasPlaying = !audio.paused;
+    audio.src = t.src;
+    const fallback = audio.querySelector('a');
+    if (fallback) fallback.href = t.src;
+    audio.load();
+    if (wasPlaying) audio.play().catch(() => {});
+    draw();
+  }));
 
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
   else window.addEventListener('resize', resize);
