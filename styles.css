@@ -580,6 +580,10 @@ a {
   border-bottom: 0.5px solid var(--color-divider-1);
 }
 
+.show + .show {
+  border-top: 0;
+}
+
 .show__info {
   margin: 0;
   display: flex;
