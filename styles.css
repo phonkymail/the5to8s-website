@@ -584,6 +584,22 @@ a {
   border-top: 0;
 }
 
+.agenda__past {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.agenda__past-title {
+  text-align: center;
+}
+
+.agenda__past .show {
+  opacity: 0.6;
+}
+
 .show__info {
   margin: 0;
   display: flex;

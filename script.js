@@ -47,6 +47,21 @@ document.addEventListener('click', (event) => {
   }).observe(topNav);
 })();
 
+// Shows whose end time (data-ends) has passed move to Past Shows, newest first
+(() => {
+  const past = document.querySelector('.agenda__past');
+  if (!past) return;
+  const now = Date.now();
+  const ended = [...document.querySelectorAll('.agenda__inner > .show[data-ends]')]
+    .filter((show) => new Date(show.dataset.ends).getTime() < now)
+    .sort((a, b) => new Date(b.dataset.ends) - new Date(a.dataset.ends));
+  ended.forEach((show) => {
+    show.querySelector('.show__tickets')?.remove();
+    past.append(show);
+  });
+  past.hidden = ended.length === 0;
+})();
+
 // Band member profiles appear in a new random order on every page load
 (() => {
   const list = document.querySelector('.members');
