@@ -774,6 +774,7 @@ a {
 
 .about__image {
   width: 100%;
+  max-width: 1200px; /* match the gallery and clips grid on wide screens */
   aspect-ratio: 1200 / 600;
   object-fit: cover;
   object-position: center 60%;
@@ -792,6 +793,7 @@ a {
 }
 
 .about__text {
+  max-width: 920px; /* same column as Live Shows, keeps lines readable on wide screens */
   text-align: center;
 }
 
