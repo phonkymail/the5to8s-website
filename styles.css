@@ -594,10 +594,21 @@ a {
 
 .agenda__past-title {
   text-align: center;
+  font-size: 20px;
+  color: var(--color-text-captions);
 }
 
 .agenda__past .show {
   opacity: 0.6;
+  padding: 16px 0;
+}
+
+.agenda__past .show__info {
+  gap: 12px 40px;
+}
+
+.agenda__past .show__field dd {
+  font-size: 16px;
 }
 
 .show__info {
@@ -605,6 +616,23 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 24px 56px;
+}
+
+/* Fixed Date and Time columns so fields line up from row to row */
+.show__field:nth-child(1) {
+  width: 170px;
+}
+
+.show__field:nth-child(2) {
+  width: 64px;
+}
+
+.agenda__past .show__field:nth-child(1) {
+  width: 136px;
+}
+
+.agenda__past .show__field:nth-child(2) {
+  width: 52px;
 }
 
 .show__field dt {
@@ -637,7 +665,14 @@ a {
   padding: 4px 12px;
 }
 
-.ticket-link:hover,
+/* Not on sale yet: same tag look, no link behaviour */
+.ticket-link--soon {
+  opacity: 0.5;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.ticket-link:not(.ticket-link--soon):hover,
 .ticket-link:focus-visible,
 .nav__link:hover,
 .nav__link:focus-visible {
@@ -1062,6 +1097,12 @@ a {
   .show__info {
     flex-direction: column;
     gap: 14px;
+  }
+
+  .show__field,
+  .show__field:nth-child(n),
+  .agenda__past .show__field:nth-child(n) {
+    width: auto;
   }
 
   .show__field {

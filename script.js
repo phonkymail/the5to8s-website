@@ -47,19 +47,98 @@ document.addEventListener('click', (event) => {
   }).observe(topNav);
 })();
 
-// Shows whose end time (data-ends) has passed move to Past Shows, newest first
+// Live show rows are read from their visible text, so they can be edited by hand:
+// Date like "Fri 22 Jan 2027", Time like "21:00" (a range "21:00–23:30" also works). A row with no
+// day and month (e.g. "2027") counts as TBA. data-ends, if present, overrides the end.
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+function showField(show, label) {
+  const dt = [...show.querySelectorAll('.show__field dt')]
+    .find((el) => el.textContent.trim().toLowerCase() === label);
+  return dt && dt.nextElementSibling;
+}
+
+function readShow(show) {
+  const dateText = showField(show, 'date')?.textContent.trim() || '';
+  const [start, end] = (showField(show, 'time')?.textContent.match(/\d{1,2}[:.]\d{2}/g) || [])
+    .map((t) => t.replace('.', ':'));
+  const match = dateText.match(/(\d{1,2})\.?\s+([a-z]{3})[a-z]*\.?\s+(\d{4})/i);
+  const month = match && MONTHS.indexOf(match[2].toLowerCase());
+  if (!match || month < 0) return { show, dateText, start, end, tba: true };
+
+  const day = Number(match[1]);
+  const year = Number(match[3]);
+  const at = (time) => {
+    const [h, m] = time.split(':').map(Number);
+    return new Date(year, month, day, h, m);
+  };
+  const begins = start ? at(start) : new Date(year, month, day);
+  // No end time: assume a 4-hour show, or the end of the day if there's no start either
+  let ends = end ? at(end) : start ? new Date(begins.getTime() + 4 * 60 * 60 * 1000) : new Date(year, month, day, 23, 59);
+  if (ends < begins) ends = new Date(ends.getTime() + 24 * 60 * 60 * 1000); // runs past midnight
+  if (show.dataset.ends) ends = new Date(show.dataset.ends);
+  return { show, dateText, start, end, day, month, year, begins, ends, tba: false };
+}
+
+const liveShows = [...document.querySelectorAll('.agenda__inner > .show')].map(readShow);
+
+// Shows that have ended move to Past Shows, newest first
 (() => {
   const past = document.querySelector('.agenda__past');
   if (!past) return;
   const now = Date.now();
-  const ended = [...document.querySelectorAll('.agenda__inner > .show[data-ends]')]
-    .filter((show) => new Date(show.dataset.ends).getTime() < now)
-    .sort((a, b) => new Date(b.dataset.ends) - new Date(a.dataset.ends));
-  ended.forEach((show) => {
+  const ended = liveShows
+    .filter((info) => !info.tba && info.ends.getTime() < now)
+    .sort((a, b) => b.ends - a.ends);
+  ended.forEach(({ show, start }) => {
     show.querySelector('.show__tickets')?.remove();
+    // Keep only the start time ("21:00", not "21:00–23:30")
+    const time = showField(show, 'time');
+    const times = time ? time.querySelectorAll('time') : [];
+    if (times.length > 1) {
+      const last = times[times.length - 1];
+      if (last.previousSibling?.nodeType === Node.TEXT_NODE) last.previousSibling.remove();
+      last.remove();
+    } else if (time && !times.length && start) {
+      time.textContent = start;
+    }
     past.append(show);
   });
   past.hidden = ended.length === 0;
+})();
+
+// "Next serving" badge mirrors the soonest upcoming show; TBA rows are used only when nothing is dated
+(() => {
+  const badge = document.querySelector('.hero__badge');
+  if (!badge) return;
+  const now = Date.now();
+  const upcoming = liveShows.filter((info) => info.tba || info.ends.getTime() >= now);
+  const next = upcoming.filter((info) => !info.tba).sort((a, b) => a.begins - b.begins)[0] || upcoming[0];
+  if (!next) return;
+
+  const setBadge = (date, time, label) => {
+    badge.querySelector('.hero__badge-date').textContent = date;
+    badge.querySelector('.hero__badge-time').textContent = time;
+    badge.setAttribute('aria-label', `Next show: ${label}`);
+  };
+
+  if (next.tba) {
+    const when = next.dateText || 'TBA';
+    setBadge(when, 'Dates TBA', `${when}, dates to be announced`);
+    return;
+  }
+
+  const { day, month, year, start, end } = next;
+  const date = new Date(year, month, day);
+  const short = date.toLocaleDateString('en-US', { month: 'short' });
+  const long = date.toLocaleDateString('en-US', { month: 'long' });
+  // "21–23:30" for a range, but a lone start keeps its minutes ("21:00")
+  const hours = end ? [start, end].map((t) => t.replace(/:00$/, '')).join('–') : start;
+  setBadge(
+    `${short} ${day}`,
+    hours ? `${year} · ${hours}` : String(year),
+    `${long} ${day}, ${year}${start ? `, ${start}${end ? ` to ${end}` : ''}` : ''}`
+  );
 })();
 
 // Band member profiles appear in a new random order on every page load
